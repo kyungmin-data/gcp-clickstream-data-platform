@@ -1,0 +1,64 @@
+version: 2
+
+models:
+  - name: slv_clickstream
+    description: "E-commerce Clickstream and Transaction Dataset"
+
+    columns:
+      - name: user_id
+        description: "Unique browsing session identifier"
+        tests:
+          - not_null:
+              store_failures: true
+
+      - name: session_id
+        description: "Unique identifier for each session"
+        tests:
+          - not_null:
+              store_failures: true
+
+      - name: timestamp
+        description: "Date and time of the interaction"
+
+      - name: event_type
+        description: "Type of event (e.g., page view, click, product view, add to cart, purchase)"
+        tests:
+          - not_null:
+              store_failures: true
+          - accepted_values:
+              values:
+                - page_view
+                - click
+                - product_view
+                - add_to_cart
+                - purchase
+              quote: true
+              store_failures: true
+
+      - name: product_id
+        description: "Unique identifier for products involved in interactions"
+        tests:
+          - relationships:
+              name : fk_product_id_validation
+              to : ref('brz_product_master')
+              field : product_id
+              store_failures : true
+          - column_length:
+              column_name: product_id
+              min_length: 1
+              max_length: 4
+              store_failures: true
+              
+      - name: amount
+        description: "Amount of the transaction (for purchases)"
+      
+      - name: outcome
+        description: "Target event (e.g., purchase)"
+      
+    tests:
+      - dbt_utils.unique_combination_of_columns:
+          combination_of_columns:
+            - user_id
+            - session_id
+            - timestamp
+          store_failures: true

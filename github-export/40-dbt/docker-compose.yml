@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  dbt:
+    build: .
+    container_name: dbt-core
+    volumes:
+      - .:/usr/app
+      - ./.dbt:/root/.dbt
+      - ../secrets/intrepid-craft-483112-c1-8480d151119b.json:/usr/app/gcp-key.json
+    ports:
+      - "7999:7999"
+    stdin_open: true
+    tty: true
+

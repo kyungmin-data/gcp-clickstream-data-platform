@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: gold_product_funnel_daily
+    description: "Daily product-level funnel KPI (product_view -> add_to_cart -> purchase)"
+    columns:
+      - name: event_date
+        tests: [not_null]
+      - name: product_id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('brz_product_master')
+              field: product_id
+
+  - name: gold_funnel_daily_overall
+    description: "Daily overall funnel KPI by sessions"
+    columns:
+      - name: event_date
+        tests: [not_null]
+
+  - name: gold_dq_daily
+    description: "Daily data quality scorecard for portfolio proof"
+    columns:
+      - name: event_date
+        tests: [not_null]
+      - name: dq_score
+        tests: [not_null]

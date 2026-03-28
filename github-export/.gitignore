@@ -1,0 +1,13 @@
+secrets/
+30-airflow/config/airflow.cfg
+30-airflow/logs/
+40-dbt/logs/
+40-dbt/gcp-key.json
+
+__pycache__/
+*.pyc
+.env
+.env.*
+target/
+dbt_packages/
+.DS_Store

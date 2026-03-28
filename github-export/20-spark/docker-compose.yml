@@ -1,0 +1,24 @@
+services:
+  spark:
+    build: .
+    image: spark-guava-fixed:3.5.1
+    container_name: spark
+    user: "0:0"   # ✅ Ivy 캐시 권한 문제 해결
+    command: /opt/spark/bin/spark-class org.apache.spark.deploy.master.Master
+    ports:
+      - "8081:8080"   # Spark Master UI (Host 8081 -> Container 8080)
+    environment:
+      - SPARK_SUBMIT_OPTS=-Divy.cache.dir=/tmp/.ivy2 -Divy.home=/tmp/.ivy2
+    volumes:
+      - ../50-apps/spark:/opt/spark/work-dir
+      - ../secrets:/opt/spark/secrets
+      - spark_ivy_cache:/tmp/.ivy2
+    networks:
+      - de_net
+
+networks:
+  de_net:
+    external: true
+
+volumes:
+  spark_ivy_cache:

@@ -1,0 +1,16 @@
+{
+  "hivePartitioningOptions": {
+    "mode": "AUTO",
+    "sourceUriPrefix": "gs://test-kafka-km/clickstream/raw/"
+  },
+  "parquetOptions": {
+    "enableListInference": false,
+    "enumAsString": false,
+    "mapTargetType": null
+  },
+  "sourceFormat": "PARQUET",
+  "sourceUris": [
+    "gs://test-kafka-km/clickstream/raw/*snappy.parquet"
+  ],
+  "timestampTargetPrecision": []
+}
