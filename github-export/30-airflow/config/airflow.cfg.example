@@ -1,0 +1,12 @@
+[core]
+executor = LocalExecutor
+
+[database]
+sql_alchemy_conn = YOUR_DB_CONNECTION
+
+[celery]
+broker_url = YOUR_BROKER_URL
+result_backend = YOUR_RESULT_BACKEND
+
+[core]
+fernet_key = YOUR_FERNET_KEY

@@ -28,9 +28,9 @@ from docker.types import Mount
 # =========================
 # Host paths (VM)
 # =========================
-HOST_DBT_ROOT = "/home/dream/40-dbt"
-HOST_DBT_DOTDBT = "/home/dream/40-dbt/.dbt"
-HOST_GCP_KEY = "/home/dream/secrets/intrepid-craft-483112-c1-8480d151119b.json"
+HOST_DBT_ROOT = "/path/to/40-dbt"
+HOST_DBT_DOTDBT = "/path/to/40-dbt/.dbt"
+HOST_GCP_KEY = "/path/to/secrets/gcp-key.json"
 
 # dbt image
 DBT_IMAGE = "40-dbt-dbt"

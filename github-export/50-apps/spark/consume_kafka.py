@@ -27,7 +27,7 @@ spark = (
     .config("spark.hadoop.google.cloud.auth.service.account.enable", "true")
     .config(
         "spark.hadoop.google.cloud.auth.service.account.json.keyfile",
-        "/opt/spark/secrets/km-598.json",
+        "/opt/spark/secrets/gcp-key.json",
     )
     .getOrCreate()
 )
